@@ -1,15 +1,52 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>Sehrgutachten</title>
-    <%= csrf_meta_tags %>
-    <%= action_cable_meta_tag %>
+<head>
+  <title>Sehrgutachten</title>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+</head>
 
-    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
-    <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
-  </head>
+<body>
+<header class="navbar navbar-static-top" id="top" role="banner">
+  <div class="container">
+    <div class="navbar-header">
+      <a href="<%= root_url %>" class="navbar-brand" data-no-turbolink='true'>Sehrgutachten</a>
+    </div>
+  </div>
+</header>
 
-  <body>
+<main>
+  <div class="container">
     <%= yield %>
-  </body>
+  </div>
+</main>
+
+<footer class="app-footer container">
+  <div class="row">
+    <div class="col-md-10 footer-project-line">
+      <p>Sehrgutachten ist ein ehrenamtliches Projekt der <a href="http://okfn.de">Open Knowledge Foundation Deutschland e.V.</a></p>
+    </div>
+    <div class="col-md-2 col-xs-6 footer-support-logo">
+      <a href="http://okfn.de"><img src="<%= image_url 'okfn-logo.svg' %>" alt="Open Knowledge Foundation Deutschland e.V." role="presentation" /></a>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-sm-6">
+      <nav class="footer-links">
+        <ul>
+          <li><%= link_to 'Kontakt & Impressum', imprint_path %></li>
+        </ul>
+      </nav>
+    </div>
+    <div class="col-sm-6">
+      <nav class="footer-links footer-related">
+        <ul>
+          <li><a href="https://fragdenstaat.de">FragDenStaat.de</a></li>
+          <li><a href="https://kleineanfragen.de">kleineAnfragen.de</a></li>
+        </ul>
+      </nav>
+    </div>
+  </div>
+</footer>
+</body>
 </html>

@@ -45,5 +45,17 @@ end
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
+# scraping
+gem 'mechanize', '~> 2.7.4'
+
+# fix urls while scraping
+gem 'addressable', '~> 2.4.0'
+
+# slugs
+gem 'friendly_id', '~> 5.1.0'
+
 # styling
 gem 'bootstrap-sass', '~> 3.3.6'
+
+# pagination
+gem 'kaminari', github: 'amatsuda/kaminari'

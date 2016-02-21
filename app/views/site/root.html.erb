@@ -13,3 +13,10 @@
 <p>
   <a href="http://blog.fragdenstaat.de/2016/fragdenbundestags-erfolg/">Erfahre hier, warum der Bundestag seine Gutachten herausgibt</a>
 </p>
+
+
+<ul>
+  <% @departments.each do |department| %>
+  <li><%= link_to department do %><strong><%= department.short_name %></strong>: <%= department.subject %><% end %></li>
+  <% end %>
+</ul>

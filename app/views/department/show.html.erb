@@ -1,0 +1,8 @@
+<h1><strong><%= @department.short_name %></strong> <%= @department.subject %></h1>
+
+<ol>
+  <%= render partial: 'paper/paper', collection: @papers %>
+</ol>
+
+<p class="pagination-total"><%= number_with_delimiter @papers.total_count %> Ausarbeitungen</p>
+<%= paginate @papers %>

@@ -1,0 +1,10 @@
+<li>
+  <p class="title">
+    <%= link_to paper_path(paper.department, paper) do %>
+      <span class="label label-default"><%= paper.reference %></span>  <%= paper.title %>
+    <% end %>
+  </p>
+  <p class="meta">
+    Ausarbeitung vom <%= time_tag(paper.created_at, l(paper.created_at))%>
+  </p>
+</li>

@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+wd1:
+  short_name: wd1
+  subject: Geschichte, Zeitgeschichte und Politik
+  source_url: http://www.bundestag.de/dokumente/analysen/wd1
+  slug: wd1
+
+wd3:
+  short_name: wd3
+  subject: Verfassung und Verwaltung
+  source_url: http://www.bundestag.de/dokumente/analysen/wd3
+  slug: wd3

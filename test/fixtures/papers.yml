@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  reference: 031/12
+  title: Research and Documentation on international affairs
+  url: http://www.bundestag.de/blob/405286/c16fc8ddcbb6d7d040be48ed59fa22e6/wd-1-031-12-pdf-data.pdf
+  created_at: "2012-03-15"
+  department: wd1
+
+two:
+  reference: 364/07
+  title: Parlamentsfernsehen
+  url: http://www.bundestag.de/blob/407366/11d9d7285c7c9dd8ac0276a7d8cd3984/wd-3-364-07-pdf-data.pdf
+  created_at: "2007-09-25"
+  department: wd3

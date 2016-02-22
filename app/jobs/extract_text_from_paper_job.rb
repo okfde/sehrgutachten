@@ -34,7 +34,8 @@ class ExtractTextFromPaperJob < ApplicationJob
 
     tempdir = Dir.mktmpdir
     Docsplit.extract_text(paper.local_path, ocr: false, output: tempdir)
-    resultfile = "#{tempdir}/#{paper.local_path.basename('.*').to_s}.txt" # fixme, use last of localpath
+    filename = paper.local_path.basename('.*').to_s
+    resultfile = "#{tempdir}/#{filename}.txt"
     return false unless File.exist?(resultfile)
     File.read resultfile
   ensure

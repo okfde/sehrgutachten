@@ -1,6 +1,38 @@
 class Paper < ApplicationRecord
   belongs_to :department
 
+  # enable search
+  searchkick language: 'german',
+             text_start: [:title],
+             word_start: [:title],
+             highlight: [:title, :contents],
+             only_analyzed: [:contents],
+             index_prefix: 'sehrgutachten'
+
+  scope :search_import, -> { includes(:department) }
+
+  def should_index?
+    !downloaded_at.nil? && !contents.blank?
+  end
+
+  def search_data
+    {
+      title: title,
+      contents: contents,
+      department: department.short_name,
+      created_at: created_at
+    }
+  end
+
+  def autocomplete_data
+    {
+      title: title,
+      reference: reference,
+      source: department.short_name,
+      url: Rails.application.routes.url_helpers.paper_path(department, self)
+    }
+  end
+
   def created_at
     self[:created_at].to_date
   end

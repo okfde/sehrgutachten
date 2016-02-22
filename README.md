@@ -10,3 +10,4 @@ sehrgutachten ist eine Rails 5 (beta)-Anwendung. Du kannst dir eine Rails-Umgebu
 #### Abhängigkeiten
 
 * `poppler-utils` (für [docsplit](http://documentcloud.github.io/docsplit/))
+* `elasticsearch` >= 2.0

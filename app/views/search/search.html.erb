@@ -1,0 +1,53 @@
+
+
+<%= form_tag "/search", method: :get, role: 'search', class: 'search', enforce_utf8: false do %>
+  <div class="jumbotron jumbotron--search">
+    <div class="container">
+      <div class="input-group">
+        <%= text_field_tag 'q', @display_term,
+                           type: :search,
+                           id: :searchq,
+                           class: 'form-control' %>
+        <span class="input-group-btn">
+          <%= button_tag 'Suchen', type: :submit, name: nil, class: 'btn btn-success' %>
+        </span>
+      </div>
+    </div>
+  </div>
+<% end %>
+
+<% if @papers.size > 0 %>
+
+<ol class="paper-list paper-list--with-body">
+  <% @papers.with_details.each do |paper, details| %>
+  <li>
+    <%
+      title = details[:highlight].try(:fetch, :title, nil).try(:html_safe) || paper.title
+      snippet = details[:highlight].try(:fetch, :contents, nil) || ''
+      snippet += '&hellip;' unless snippet.blank?
+    %>
+    <p class="source-and-title">
+      <span class="source">
+      <%= link_to paper.department.short_name, paper.department %>
+      <span class="label label-default"><%= link_to_paper paper.reference, paper %></span></span>
+      <%= link_to_paper title, paper, class: 'searchresult-title' %>
+    </p>
+    <p class="meta">
+      Ausarbeitung vom <%= time_tag(paper.created_at, l(paper.created_at)) %>
+      &mdash; <%= paper.page_count || '?' %> Seiten
+    </p>
+    <p class="searchresult-snippet"><%= snippet.gsub(/[\t\n]/, ' ').html_safe %></p>
+  </li>
+  <% end %>
+</ol>
+
+<p class="pagination-total"><%= number_with_delimiter @papers.total_count %> Gutachten</p>
+<%= paginate @papers %>
+
+<% else %>
+<div class="well">
+  <p>Es wurden leider keine Gutachten gefunden, die mit deiner Suche übereinstimmen.</p>
+  <%- fdsquery = { q: @query } -%>
+  <p>Möglicherweise gibt es aber eine <%= link_to 'IFG-Anfrage bei FragDenStaat.de', "https://fragdenstaat.de/suche/?#{fdsquery.to_query}" %> zu deiner Suche.</p>
+</div>
+<% end %>

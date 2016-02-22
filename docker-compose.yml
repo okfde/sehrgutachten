@@ -7,9 +7,11 @@ web:
     - .:/app
   links:
     - database
+    - elasticsearch
   environment:
     RACK_ENV: development
     DATABASE_URL: postgres://sehrgutachten:@database/sehrgutachten
+    ELASTICSEARCH_URL: http://elasticsearch:9200/
 
 database:
   image: postgres:9.4
@@ -17,3 +19,9 @@ database:
     POSTGRES_USER: sehrgutachten
   ports:
     - 5432
+
+elasticsearch:
+  image: elasticsearch:2.2
+  command: elasticsearch -Des.http.cors.enabled=true
+  ports:
+    - "9200:9200"

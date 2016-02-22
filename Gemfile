@@ -73,3 +73,6 @@ gem 'patron', '~> 0.5.0'
 
 # pdf page count
 gem 'docsplit', '~> 0.7.6'
+
+# search
+gem 'searchkick', '~> 1.2.1'

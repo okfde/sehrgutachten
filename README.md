@@ -1,24 +1,8 @@
-## README
+## sehrgutachten
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Gutachten des [Wissenschaftlichen Dienstes des Bundestags](http://bundestag.de/ausarbeitungen/), besser auflisten und durchsuchbar machen.
 
-Things you may want to cover:
 
-* Ruby version
+### Entwicklung
 
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+sehrgutachten ist eine Rails 5 (beta)-Anwendung. Du kannst dir eine Rails-Umgebung installieren, oder mittels [docker-compose](https://docs.docker.com/compose/) eine bereits fertig eingerichtete Umgebung benutzen.

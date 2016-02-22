@@ -11,3 +11,14 @@ sehrgutachten ist eine Rails 5 (beta)-Anwendung. Du kannst dir eine Rails-Umgebu
 
 * `poppler-utils` (für [docsplit](http://documentcloud.github.io/docsplit/))
 * `elasticsearch` >= 2.0
+
+### Jobs
+Jobs laufen mittels ActiveJob.
+
+Je nach Setup musst du bei den folgenden Kommandos `bundle exec` davorpacken, sodass die richtigen gems genutzt werden.
+
+* Neue Papers importieren
+
+  ```
+  rake 'papers:import_new[wd1]'
+  ```

@@ -1,4 +1,4 @@
-class DownloadPapersJob < ApplicationJob
+class DownloadPaperJob < ApplicationJob
   def perform(paper, options = {})
     options.reverse_merge!(force: false)
 
@@ -14,7 +14,7 @@ class DownloadPapersJob < ApplicationJob
 
     CountPageNumbersJob.perform_later(paper) if paper.page_count.blank? || options[:force]
     ExtractTextFromPaperJob.perform_later(paper) if paper.contents.blank? || options[:force]
-    # ExtractLastModifiedFromPaperJob.perform_later(paper) if paper.pdf_last_modified.blank?
+    ExtractLastModifiedFromPaperJob.perform_later(paper) if paper.last_modified.blank?
   end
 
   def patron_session
@@ -59,9 +59,7 @@ class DownloadPapersJob < ApplicationJob
 
     paper.last_modified = DateTime.parse(last_modified) unless last_modified.blank?
     paper.downloaded_at = DateTime.now if paper.downloaded_at.nil?
-    paper.save
-
-    true
+    paper.save!
   end
 
   def content_type(response)

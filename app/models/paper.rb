@@ -1,4 +1,7 @@
 class Paper < ApplicationRecord
+  extend FriendlyId
+  friendly_id :reference_and_title, use: :scoped, scope: [:department]
+
   belongs_to :department
 
   # enable search
@@ -31,6 +34,25 @@ class Paper < ApplicationRecord
       source: department.short_name,
       url: Rails.application.routes.url_helpers.paper_path(department, self)
     }
+  end
+
+
+  def should_generate_new_friendly_id?
+    title_changed? || super
+  end
+
+  def reference_and_title
+    [
+      [:slug_reference, :title]
+    ]
+  end
+
+  def slug_reference
+    reference.gsub('/', '-')
+  end
+
+  def normalize_friendly_id(value)
+    value.to_s.gsub('&', 'und').parameterize.truncate(120, separator: '-', omission: '')
   end
 
   def created_at

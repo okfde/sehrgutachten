@@ -76,3 +76,6 @@ gem 'docsplit', '~> 0.7.6'
 
 # search
 gem 'searchkick', '~> 1.2.1'
+
+# simple title and opengraph/twitter cards view helpers
+gem 'tophat', '~>2.2.1'

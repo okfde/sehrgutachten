@@ -1,4 +1,4 @@
-
+<% title "Suche nach #{@query}" + (!@papers.first_page? ? " (Seite #{@papers.current_page})" : '') %>
 
 <%= form_tag "/search", method: :get, role: 'search', class: 'search', enforce_utf8: false do %>
   <div class="jumbotron jumbotron--search">

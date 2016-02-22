@@ -15,3 +15,7 @@
 
 # Ignore Byebug command history file.
 .byebug_history
+
+# data folder for local storage
+/data/*
+!/data/.keep

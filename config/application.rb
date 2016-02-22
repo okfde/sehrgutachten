@@ -14,5 +14,9 @@ module Sehrgutachten
     config.i18n.load_path += Dir[Rails.root.join('config', 'locales', '**', '*.{rb,yml}').to_s]
     config.i18n.available_locales = :de
     config.i18n.default_locale = :de
+
+    # applicaton config:
+    # path for storing paper pdfs
+    config.x.paper_storage = Rails.root.join('data')
   end
 end

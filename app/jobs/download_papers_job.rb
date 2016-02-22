@@ -13,7 +13,7 @@ class DownloadPapersJob < ApplicationJob
     fail "Downloading Paper [#{paper.department.short_name} #{paper.reference}] failed" unless ret
 
     CountPageNumbersJob.perform_later(paper) if paper.page_count.blank? || options[:force]
-    # ExtractTextFromPaperJob.perform_later(paper) if paper.contents.blank? || options[:force]
+    ExtractTextFromPaperJob.perform_later(paper) if paper.contents.blank? || options[:force]
     # ExtractLastModifiedFromPaperJob.perform_later(paper) if paper.pdf_last_modified.blank?
   end
 

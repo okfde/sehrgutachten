@@ -45,6 +45,9 @@ end
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
+# Get i18n files
+gem 'rails-i18n', '~> 5.0.0.beta3'
+
 # scraping
 gem 'mechanize', '~> 2.7.4'
 

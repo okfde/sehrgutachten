@@ -3,5 +3,8 @@
   <%= @paper.title %>
 </h1>
 <p>
+  Ausarbeitung vom <%= time_tag(@paper.created_at, l(@paper.created_at))%>
+</p>
+<p>
   <%= link_to 'Download', @paper.url, class: 'btn btn-primary btn-lg' %>
 </p>

@@ -8,26 +8,24 @@
   Dafür gibt es diese Website! Mit einem Klick kannst du hier alle bisher vom Bundestag veröffentlichten Gutachten nach Titel und Inhalt durchsuchen und herunterladen. Versuch es zum Beispiel mit Gutachten zum Thema <%= link_to 'Terrorismus', search_path(q: 'Terrorismus') %>.
 </p>
 <p>
-  <strong>Sehrgutachten!</strong>
-</p>
-<p>
   <a href="http://blog.fragdenstaat.de/2016/fragdenbundestags-erfolg/">Erfahre hier, warum der Bundestag seine Gutachten herausgibt</a>
 </p>
 
-<div class="container">
+<div class="search-block">
   <form action="/search" method="get" role="search" class="search">
     <p><label for="searchq" class="tagline">Suche in über <%= number_with_delimiter @count %> Gutachten:</label></p>
     <div class="input-group">
       <input type="text" id="searchq" name="q" class="form-control" />
       <span class="input-group-btn">
-        <button class="btn btn-success" type="submit">Suchen</button>
+        <button class="btn btn-default" type="submit">Suchen</button>
       </span>
     </div>
   </form>
 </div>
 
+<h3>Wissenschaftliche Dienste des Bundestags:</h3>
 <ul>
   <% @departments.each do |department| %>
-  <li><%= link_to department do %><strong><%= department.short_name %></strong>: <%= department.subject %><% end %></li>
+  <li><%= link_to department do %><strong class="dep-short"><%= department.short_name %></strong>: <%= department.subject %><% end %></li>
   <% end %>
 </ul>

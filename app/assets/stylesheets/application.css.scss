@@ -4,3 +4,169 @@
 
 @import "bootstrap-sprockets";
 @import "bootstrap";
+
+.navbar {
+  margin-top: 10px;
+  margin-bottom: 15px;
+}
+
+.navbar-brand {
+  font-family: 'Poly', sans-serif;
+  font-weight: 500;
+  font-size: 20px;
+  text-indent: -3000em;
+  background: image-url('sehrgutachten-logo.svg') center no-repeat;
+  background-origin: content-box;
+  min-width: 235px;
+}
+
+.app-footer.container {
+  margin-top: 25px;
+  color: $gray-light;
+}
+
+.app-footer .row {
+  border-top: 1px solid $gray-lighter;
+  padding: 5px 0;
+}
+
+.footer-project-line {
+  padding-top: 10px;
+}
+
+.footer-support-logo {
+  text-align: center;
+}
+
+.footer-support-logo img {
+  height: 75px
+}
+
+.footer-links ul {
+  padding: 0;
+  list-style: none;
+  // reset the left/right padding of the <li>s
+  margin-left: -5px;
+  margin-right: -5px;
+}
+
+.footer-links li {
+  display: inline-block;
+  padding: 2px 5px;
+}
+
+.footer-links a {
+  display: inline-block;
+  padding: 2px 0;
+}
+
+.footer-related ul {
+  text-align: right;
+}
+
+.search-block {
+  background: linear-gradient(135deg, #dadfdb 0%,#d1d6d2 100%);
+  margin: 25px 0;
+  padding: 30px;
+  border-radius: 8px;
+
+  .tagline {
+    color: #4D5A50;
+    /* text-shadow: 0px 1px 0px rgba(0, 0, 0, 0.5); */
+    margin: 0;
+    font-weight: normal;
+    font-family: Poly;
+    /* font-style: italic; */
+    font-size: 2.2rem
+  }
+}
+
+.dep-short {
+  font-size: 90%;
+  text-transform: uppercase;
+}
+
+
+.paper-list {
+  list-style: none;
+  padding: 0;
+
+  li {
+    margin-bottom: 1.6em;
+    @media (min-width: $screen-xs-min) {
+      margin-bottom: 0.6em;
+    }
+  }
+
+  p {
+    margin-bottom: 0;
+    padding-left: 0;
+    @media (min-width: $screen-xs-min) {
+      padding-left: 60px;
+    }
+  }
+
+  .source {
+    display: inline-block;
+    float: left;
+    @media (min-width: $screen-xs-min) {
+      margin-left: -60px;
+    }
+  }
+
+  .meta {
+    color: #AAA;
+    margin-left: 1.7em;
+    font-size: 0.9em;
+    line-height: 1.8;
+    margin-left: 0;
+  }
+
+  &.paper-list--with-body {
+    p {
+      padding-left: 0;
+      @media (min-width: $screen-xs-min) {
+        padding-left: 80px;
+      }
+    }
+    .source-and-title {
+      padding-left: 60px;
+      @media (min-width: $screen-xs-min) {
+        padding-left: 80px;
+      }
+    }
+    .source {
+      margin-left: -60px;
+      @media (min-width: $screen-xs-min) {
+        margin-left: -80px;
+      }
+    }
+    .label {
+      display: block;
+      margin-top: 5px;
+      @media (min-width: $screen-xs-min) {
+        display: inline;
+        margin-top: 0;
+      }
+    }
+  }
+}
+
+.label {
+  font-weight: normal;
+  margin-right: 3px;
+}
+
+.label-big {
+  font-size: 17px;
+}
+
+.label a {
+  text-decoration: none;
+  color: inherit;
+  font-weight: inherit;
+}
+
+.container > h1:first-child {
+  margin-top: 0;
+}

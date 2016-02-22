@@ -1,8 +1,9 @@
 <li>
   <p class="title">
-    <%= link_to paper_path(paper.department, paper) do %>
-      <span class="label label-default"><%= paper.reference %></span>  <%= paper.title %>
-    <% end %>
+    <span class="source">
+      <span class="label label-default"><%= link_to paper.reference, paper_path(paper.department, paper) %></span>
+    </span>
+    <%= link_to paper.title, paper_path(paper.department, paper) %>
   </p>
   <p class="meta">
     Ausarbeitung vom <%= time_tag(paper.created_at, l(paper.created_at))%>, <%= paper.page_count || '?' %> Seiten

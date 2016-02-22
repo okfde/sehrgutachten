@@ -1,6 +1,6 @@
-<h1><strong><%= @department.short_name %></strong> <%= @department.subject %></h1>
+<h1><strong class="dep-short"><%= @department.short_name %></strong>: <%= @department.subject %></h1>
 
-<ol>
+<ol class="paper-list">
   <%= render partial: 'paper/paper', collection: @papers %>
 </ol>
 

@@ -10,16 +10,16 @@
 <header class="navbar navbar-static-top" id="top" role="banner">
   <div class="container">
     <div class="navbar-header">
-      <a href="<%= root_url %>" class="navbar-brand" data-no-turbolink='true'>sehr<em>gut</em>achten</a>
+      <a href="<%= root_url %>" class="navbar-brand" data-no-turbolink='true'><em>sehr</em>gutachten</a>
     </div>
 
     <% if display_header_search? %>
     <form class="navbar-form navbar-left search search--navbar" role="search" action="/search" method="get" class="search">
+      <label for="searchq" class="sr-only">Suche in Gutachten:</label>
       <div class="input-group">
-        <label for="searchq" class="sr-only">Suche in Gutachten:</label>
-        <input type="search" id="searchq" name="q" class="form-control"/>
+        <input type="search" id="searchq" name="q" class="form-control search-input"/>
         <span class="input-group-btn">
-          <button class="btn btn-success" type="submit">Suchen</button>
+          <button class="btn btn-default" type="submit">Suchen</button>
         </span>
       </div>
     </form>
@@ -36,7 +36,7 @@
 <footer class="app-footer container">
   <div class="row">
     <div class="col-md-10 footer-project-line">
-      <p>Sehrgutachten ist ein ehrenamtliches Projekt der <a href="https://okfn.de">Open Knowledge Foundation Deutschland e.V.</a></p>
+      <p>sehrgutachten ist ein gemeinnütziges Projekt der <a href="https://okfn.de">Open Knowledge Foundation Deutschland e.V.</a></p>
     </div>
     <div class="col-md-2 col-xs-6 footer-support-logo">
       <a href="https://okfn.de"><img src="<%= image_url 'okfn-logo.svg' %>" alt="Open Knowledge Foundation Deutschland e.V." role="presentation" /></a>

@@ -1,4 +1,6 @@
-<p><%= link_to "#{@department.short_name}: #{@department.subject}", @department %></p>
+<% title "#{@paper.title} (#{@paper.reference}) &mdash; #{@department.short_name}" %>
+
+<p><%= link_to @department do %><strong class="dep-short"><%= @department.short_name %></strong>: <%= @department.subject %><% end %></p>
 <h1>
   <span class="label label-default"><%= @paper.reference %></span>
   <%= @paper.title %>

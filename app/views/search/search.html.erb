@@ -18,7 +18,7 @@
 
 <% if @papers.size > 0 %>
 
-<ol class="paper-list paper-list--with-body">
+<ol class="paper-list paper-list--with-department">
   <% @papers.with_details.each do |paper, details| %>
   <li>
     <%
@@ -42,7 +42,7 @@
   <% end %>
 </ol>
 
-<p class="pagination-total"><%= number_with_delimiter @papers.total_count %> Gutachten</p>
+<p class="pagination-total text-right"><%= number_with_delimiter @papers.total_count %> Gutachten</p>
 <%= paginate @papers %>
 
 <% else %>

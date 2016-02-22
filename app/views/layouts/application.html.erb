@@ -12,6 +12,18 @@
     <div class="navbar-header">
       <a href="<%= root_url %>" class="navbar-brand" data-no-turbolink='true'>sehr<em>gut</em>achten</a>
     </div>
+
+    <% if display_header_search? %>
+    <form class="navbar-form navbar-left search search--navbar" role="search" action="/search" method="get" class="search">
+      <div class="input-group">
+        <label for="searchq" class="sr-only">Suche in Gutachten:</label>
+        <input type="search" id="searchq" name="q" class="form-control"/>
+        <span class="input-group-btn">
+          <button class="btn btn-success" type="submit">Suchen</button>
+        </span>
+      </div>
+    </form>
+    <% end %>
   </div>
 </header>
 

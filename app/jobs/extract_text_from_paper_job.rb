@@ -18,7 +18,7 @@ class ExtractTextFromPaperJob < ApplicationJob
     text = self.class.clean_text(text)
 
     paper.contents = text
-    paper.save
+    paper.save!
   end
 
   def patron_session

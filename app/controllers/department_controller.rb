@@ -1,5 +1,5 @@
 class DepartmentController < ApplicationController
-  before_filter :find_department
+  before_action :find_department
 
   def show
     @papers = @department.papers

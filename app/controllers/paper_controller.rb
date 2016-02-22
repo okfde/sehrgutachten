@@ -1,6 +1,6 @@
 class PaperController < ApplicationController
-  before_filter :find_department
-  before_filter :find_paper
+  before_action :find_department
+  before_action :find_paper
 
   def show
   end

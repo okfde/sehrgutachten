@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160221182913) do
+ActiveRecord::Schema.define(version: 20160222152015) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -45,6 +45,9 @@ ActiveRecord::Schema.define(version: 20160221182913) do
     t.integer  "department_id"
     t.datetime "created_at",    null: false
     t.datetime "updated_at",    null: false
+    t.datetime "downloaded_at"
+    t.integer  "page_count"
+    t.datetime "last_modified"
     t.index ["department_id"], name: "index_papers_on_department_id", using: :btree
   end
 

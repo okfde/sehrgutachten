@@ -67,3 +67,9 @@ gem 'bootstrap-sass', '~> 3.3.6'
 
 # pagination
 gem 'kaminari', github: 'amatsuda/kaminari'
+
+# httpclient
+gem 'patron', '~> 0.5.0'
+
+# pdf page count
+gem 'docsplit', '~> 0.7.6'

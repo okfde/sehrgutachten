@@ -6,3 +6,7 @@ Gutachten des [Wissenschaftlichen Dienstes des Bundestags](http://bundestag.de/a
 ### Entwicklung
 
 sehrgutachten ist eine Rails 5 (beta)-Anwendung. Du kannst dir eine Rails-Umgebung installieren, oder mittels [docker-compose](https://docs.docker.com/compose/) eine bereits fertig eingerichtete Umgebung benutzen.
+
+#### Abhängigkeiten
+
+* `poppler-utils` (für [docsplit](http://documentcloud.github.io/docsplit/))

@@ -5,6 +5,6 @@
     <% end %>
   </p>
   <p class="meta">
-    Ausarbeitung vom <%= time_tag(paper.created_at, l(paper.created_at))%>
+    Ausarbeitung vom <%= time_tag(paper.created_at, l(paper.created_at))%>, <%= paper.page_count || '?' %> Seiten
   </p>
 </li>

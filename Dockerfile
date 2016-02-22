@@ -1,6 +1,6 @@
 FROM ruby:2.3.0
 
-RUN apt-get update -qq && apt-get install -y build-essential libpq-dev postgresql-client nodejs
+RUN apt-get update -qq && apt-get install -y build-essential libpq-dev postgresql-client nodejs poppler-utils
 
 # enable utf8 in irb
 ENV LANG C.UTF-8

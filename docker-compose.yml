@@ -24,4 +24,4 @@ elasticsearch:
   image: elasticsearch:2.2
   command: elasticsearch -Des.http.cors.enabled=true
   ports:
-    - "9200:9200"
+    - 9200

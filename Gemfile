@@ -35,6 +35,11 @@ group :development, :test do
   gem 'byebug'
 end
 
+group :test do
+  gem 'sqlite3'
+  gem 'memory_test_fix', path: "vendor/gems/memory_test_fix-1.2.1"
+end
+
 group :development do
   # Access an IRB console on exception pages or by using <%= console %> in views
   gem 'web-console', '~> 3.0'

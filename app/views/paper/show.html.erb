@@ -1,17 +1,26 @@
 <% title "#{@paper.title} (#{@paper.reference}) &mdash; #{@department.short_name}" %>
 
-<p><%= link_to @department do %><strong class="dep-short"><%= @department.short_name %></strong>: <%= @department.subject %><% end %></p>
-<h1>
-  <span class="label label-default"><%= @paper.reference %></span>
-  <%= @paper.title %>
-</h1>
-<p>
-  Ausarbeitung vom <%= time_tag(@paper.created_at, l(@paper.created_at))%>, <%= @paper.page_count || '?' %> Seiten
-</p>
-<p class="text-right">
-  <%= link_to 'Download', @paper.url, class: 'btn btn-primary btn-lg' %>
-</p>
+<div class="page-header">
+  <p><%= link_to @department do %><strong class="dep-short"><%= @department.short_name %></strong>: <%= @department.subject %><% end %></p>
+  <h1>
+    <span class="label label-default"><%= @paper.reference %></span>
+    <%= @paper.title %>
+  </h1>
+</div>
 
-<iframe src="<%= @paper.url %>" width="100%" height="650px"></iframe>
+<div class="row">
+  <div class="col-xs-7 col-md-9">
+    <p>
+      Ausarbeitung vom <%= time_tag(@paper.created_at, l(@paper.created_at))%>, <%= @paper.page_count || '?' %> Seiten
+    </p>
+  </div>
+  <div class="col-xs-5 col-md-3 text-right">
+    <%= link_to 'Download PDF', @paper.url, class: 'btn btn-primary' %>
+  </div>
+</div>
+
+<iframe src="<%= @paper.url %>" width="100%" height="650px" class="paper-iframe"></iframe>
+
+<p class="pull-right"><small><%= link_to 'Quelle: Bundestag', @department.source_url, target: '_blank' %></small></p>
 
 <!-- Paper/<%= @paper.id %> -->

@@ -1,10 +1,18 @@
-<h1><strong class="dep-short"><%= @department.short_name %></strong>: <%= @department.subject %></h1>
+<div class="page-header">
+  <h1><strong class="dep-short"><%= @department.short_name %></strong>: <%= @department.subject %></h1>
+</div>
 
 <ol class="paper-list">
   <%= render partial: 'paper/paper', collection: @papers %>
 </ol>
 
-<p class="pagination-total"><%= number_with_delimiter @papers.total_count %> Ausarbeitungen</p>
-<%= paginate @papers %>
+<div class="row">
+  <div class="col-md-3 col-md-push-9">
+    <p class="pagination-total"><%= number_with_delimiter @papers.total_count %> Gutachten</p>
+  </div>
+  <div class="col-md-9 col-md-pull-3">
+    <%= paginate @papers %>
+  </div>
+</div>
 
 <!-- Department/<%= @department.id %> -->

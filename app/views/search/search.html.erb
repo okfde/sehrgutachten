@@ -28,7 +28,7 @@
     %>
     <p class="source-and-title">
       <span class="source">
-        <%= link_to paper.department.short_name, paper.department %>
+        <%= link_to paper.department.short_name, paper.department, class: 'dep-short' %>
         <span class="label label-default"><%= link_to_paper paper.reference, paper %></span>
       </span>
       <%= link_to_paper title, paper, class: 'searchresult-title' %>
@@ -42,8 +42,14 @@
   <% end %>
 </ol>
 
-<p class="pagination-total text-right"><%= number_with_delimiter @papers.total_count %> Gutachten</p>
-<%= paginate @papers %>
+<div class="row">
+  <div class="col-md-3 col-md-push-9">
+    <p class="pagination-total"><%= number_with_delimiter @papers.total_count %> Gutachten</p>
+  </div>
+  <div class="col-md-9 col-md-pull-3">
+    <%= paginate @papers %>
+  </div>
+</div>
 
 <% else %>
 <div class="well">

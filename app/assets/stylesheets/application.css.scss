@@ -122,23 +122,23 @@
     margin-left: 0;
   }
 
-  &.paper-list--with-body {
+  &.paper-list--with-department {
     p {
       padding-left: 0;
       @media (min-width: $screen-xs-min) {
-        padding-left: 80px;
+        padding-left: 85px;
       }
     }
     .source-and-title {
-      padding-left: 60px;
+      padding-left: 65px;
       @media (min-width: $screen-xs-min) {
-        padding-left: 80px;
+        padding-left: 85px;
       }
     }
     .source {
-      margin-left: -60px;
+      margin-left: -65px;
       @media (min-width: $screen-xs-min) {
-        margin-left: -80px;
+        margin-left: -85px;
       }
     }
     .label {
@@ -169,4 +169,44 @@
 
 .container > h1:first-child {
   margin-top: 0;
+}
+
+
+.page-header {
+  padding-bottom: 9px;
+  margin: 0 0 20px;
+  border-bottom: 1px solid #eeeeee;
+}
+
+.page-header p {
+  margin: 0;
+}
+
+.page-header h1 {
+  margin: 0;
+  font-size: 25px;
+  line-height: 1.25;
+
+  @media (min-width: $screen-sm-min) {
+    font-size: 30px;
+    line-height: 1.35;
+  }
+
+  .label {
+    font-size: 15px;
+    vertical-align: 40%;
+  }
+}
+
+.paper-iframe {
+  margin-top: 15px;
+  border: 1px solid #aaa;
+}
+
+.pagination {
+  margin: 0;
+}
+
+.pagination-total {
+  text-align: right;
 }

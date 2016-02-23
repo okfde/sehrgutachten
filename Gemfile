@@ -70,6 +70,7 @@ gem 'kaminari', github: 'amatsuda/kaminari'
 
 # httpclient
 gem 'patron', '~> 0.5.0'
+gem 'excon', '~> 0.45.4'
 
 # pdf page count
 gem 'docsplit', '~> 0.7.6'

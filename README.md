@@ -11,6 +11,7 @@ sehrgutachten ist eine Rails 5 (beta)-Anwendung. Du kannst dir eine Rails-Umgebu
 
 * `poppler-utils` (für [docsplit](http://documentcloud.github.io/docsplit/))
 * `elasticsearch` >= 2.0
+*  apache tika server - z.B. [givemetext.okfnlabs.org](http://givemetext.okfnlabs.org/)
 
 ### Jobs
 Jobs laufen mittels ActiveJob.

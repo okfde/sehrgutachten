@@ -86,6 +86,7 @@ GEM
       faraday
       multi_json
     erubis (2.7.0)
+    excon (0.45.4)
     execjs (2.6.0)
     faraday (0.9.2)
       multipart-post (>= 1.2, < 3)
@@ -221,6 +222,7 @@ DEPENDENCIES
   byebug
   coffee-rails (~> 4.1.0)
   docsplit (~> 0.7.6)
+  excon (~> 0.45.4)
   friendly_id (~> 5.1.0)
   jbuilder (~> 2.0)
   jquery-rails

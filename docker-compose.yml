@@ -8,10 +8,12 @@ web:
   links:
     - database
     - elasticsearch
+    - tika
   environment:
     RACK_ENV: development
     DATABASE_URL: postgres://sehrgutachten:@database/sehrgutachten
     ELASTICSEARCH_URL: http://elasticsearch:9200/
+    TIKA_SERVER_URL: http://tika:9998
 
 database:
   image: postgres:9.4
@@ -25,3 +27,8 @@ elasticsearch:
   command: elasticsearch -Des.http.cors.enabled=true
   ports:
     - 9200
+
+tika:
+  image: logicalspark/docker-tikaserver
+  ports:
+    - 9998

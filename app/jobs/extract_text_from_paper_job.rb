@@ -21,14 +21,6 @@ class ExtractTextFromPaperJob < ApplicationJob
     paper.save!
   end
 
-  def patron_session
-    sess = Patron::Session.new
-    sess.connect_timeout = 5
-    sess.timeout = 60
-    sess.headers['User-Agent'] = Rails.configuration.x.user_agent
-    sess
-  end
-
   def extract_local(paper)
     fail "No local copy of the PDF of Paper [#{paper.department.short_name} #{paper.reference}] found" unless File.exist?(paper.local_path)
 
@@ -49,10 +41,9 @@ class ExtractTextFromPaperJob < ApplicationJob
   def extract_tika(paper)
     fail "No local copy of the PDF of Paper [#{paper.department.short_name} #{paper.reference}] found" unless File.exist?(paper.local_path)
     pdf_contents = File.new(paper.local_path).read
-    response = patron_session.put(
-                 tika_endpoint,
-                 pdf_contents,
-                 { 'Content-Type' => 'application/pdf', 'Accept' => 'text/plain' })
+    response = Excon.put(tika_endpoint,
+                 body: pdf_contents,
+                 headers: { 'Content-Type' => 'application/pdf', 'Accept' => 'text/plain' })
     fail "Couldn't get response, status: #{response.status}" if response.status != 200
     # reason for force_encoding: https://github.com/excon/excon/issues/189
     text = response.body.force_encoding('utf-8').strip
@@ -61,10 +52,9 @@ class ExtractTextFromPaperJob < ApplicationJob
   end
 
   def extract_ocrspace(paper)
-    response = patron_session.post(
-                 'https://api.ocr.space/parse/image',
-                  URI.encode_www_form(apikey: 'helloworld', url: paper.url, language: 'ger'),
-                  { 'Content-Type' => 'application/x-www-form-urlencoded', 'Accept' => 'application/json' })
+    response = Excon.post('https://api.ocr.space/parse/image',
+                          body: URI.encode_www_form(apikey: 'helloworld', url: paper.url, language: 'ger'),
+                          headers: { 'Content-Type' => 'application/x-www-form-urlencoded', 'Accept' => 'application/json' })
     fail "Couldn't get response, status: #{response.status}" if response.status != 200
     data = JSON.parse response.body
     fail "Error from ocr.space: #{data['ErrorMessage']}, #{data['ErrorDetails']}" if data['OCRExitCode'] > 1 || data['IsErroredOnProcessing'] != false

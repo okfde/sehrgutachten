@@ -28,6 +28,8 @@ $btn-brand-color:  #fff;
 $btn-brand-bg:     $brand-btncolor;
 $btn-brand-border: darken($btn-brand-bg, 5%) !default;
 
+$input-border-focus: $brand-btncolor;
+
 @import "bootstrap";
 
 .btn-brand {

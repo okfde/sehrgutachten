@@ -62,6 +62,20 @@ h3 {
   min-width: 235px;
 }
 
+.search--navbar {
+  .input-group {
+    width: 100%;
+  }
+
+  .input-group .input-group-btn {
+    width: 1%;
+  }
+
+  @media (min-width: $screen-sm-min) {
+    width: 500px;
+  }
+}
+
 .app-footer.container {
   margin-top: 25px;
   color: $gray-light;

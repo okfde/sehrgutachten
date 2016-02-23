@@ -4,6 +4,12 @@ class PaperController < ApplicationController
   before_action :redirect_old_slugs
 
   def show
+    respond_to do |format|
+      format.html
+      format.pdf { redirect_to @paper.url }
+      format.txt { render plain: @paper.contents }
+      format.json
+    end
   end
 
   private
@@ -17,7 +23,7 @@ class PaperController < ApplicationController
   end
 
   def redirect_old_slugs
-    canonical_path = paper_path(@department, @paper)
+    canonical_path = paper_path(@department, @paper, format: mime_extension(request.format))
     if request.path != canonical_path
       return redirect_to canonical_path, status: :moved_permanently
     end

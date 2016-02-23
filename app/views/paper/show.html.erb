@@ -1,4 +1,7 @@
 <% title "#{@paper.title} (#{@paper.reference}) &mdash; #{@department.short_name}" %>
+<%- content_for :head do %>
+<%= tag 'link', href: paper_path(@department, @paper, {format: :json}), rel: 'alternate', type: 'application/json' -%>
+<%- end -%>
 
 <div class="page-header">
   <p><%= link_to @department do %><strong class="dep-short"><%= @department.short_name %></strong>: <%= @department.subject %><% end %></p>

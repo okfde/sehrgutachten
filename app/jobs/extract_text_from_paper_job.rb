@@ -2,15 +2,16 @@ class ExtractTextFromPaperJob < ApplicationJob
   queue_as :meta
 
   def perform(paper, options = {})
-    options.reverse_merge!(method: :tika)
+    options.reverse_merge!(method: :all)
     logger.info "Extracting Text of the Paper [#{paper.department.short_name} #{paper.reference}]"
+    text = nil
 
-    if !Rails.configuration.x.tika_server.blank? && options[:method] == :tika
-      text = extract_tika(paper)
-    elsif options[:method] == :ocrspace
-      text = extract_ocrspace(paper)
-    else
-      text = extract_local(paper)
+    methods = [:tika, :ocrspace, :local]
+    methods = [options[:method]] unless options[:method] == :all
+
+    methods.each do |method|
+      text = extract(method, paper)
+      break unless text.blank?
     end
 
     fail "Can't extract text from Paper [#{paper.department.short_name} #{paper.reference}]" if text.blank?
@@ -19,6 +20,17 @@ class ExtractTextFromPaperJob < ApplicationJob
 
     paper.contents = text
     paper.save!
+  end
+
+  def extract(method, paper)
+    case method
+    when :tika
+      extract_tika(paper) unless Rails.configuration.x.tika_server.blank?
+    when :ocrspace
+      extract_ocrspace(paper)
+    when :local
+      extract_local(paper)
+    end
   end
 
   def extract_local(paper)

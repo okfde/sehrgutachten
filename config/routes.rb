@@ -7,6 +7,8 @@ Rails.application.routes.draw do
 
   get 'impressum' => 'site#imprint', as: :imprint
 
+  get 'recent' => 'site#recent', as: :recent, format: :atom
+
   get 'bt/:department/:paper' => 'paper#show', as: :paper
   get 'bt/:department' => 'department#show', as: :department #, department: /[a-z]+[\d]+/, format: false
 

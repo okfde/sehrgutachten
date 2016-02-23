@@ -23,6 +23,11 @@
   </form>
 </div>
 
+<p class="pull-right">
+  <%= link_to recent_url(format: :atom), class: 'feed', title: "Neue Gutachten als Atom-Feed abonnieren" do %>
+    <span class="sr-only">Neue Gutachten als Atom-Feed abonnieren:</span><%= image_tag('feed-icon.svg', class: 'feed-icon', alt: 'Atom-Feed') %>
+  <% end %>
+</p>
 <h3>Wissenschaftliche Dienste des Bundestags:</h3>
 <ul>
   <% @departments.each do |department| %>

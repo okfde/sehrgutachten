@@ -37,11 +37,12 @@ class WdAusarbeitungenScraper
 
     mp.search('//div[@id="inhaltsbereich"]//ul/li').each do |item|
       meta = item.children[0].text.strip
-      d = meta.match(/([\d\.]+)\s*\z/)[1]
-      date = Date.parse(d)
+      mm = meta.match(/\A(.+)\p{Z}+vom\p{Z}+([\d\.]+)\p{Z}*\z/)
+      doctype = mm[1].strip.downcase
+      date = Date.parse(mm[2])
 
       title = item.at_css('strong').text
-      t = title.match(/W[DF]\p{Z}*\d*.+?\p{Pd}?\p{Z}*([\d\/]+)\p{Z}*(.+)/i)
+      t = title.match(/[WP][DEF]\p{Z}*\d*.+?\p{Pd}?\p{Z}*([\d\/]+)\p{Z}*(.+)/i)
       if t.nil?
         STDERR.puts "Can't extract title: \"#{title}\" source: #{department_url}"
         next
@@ -55,6 +56,7 @@ class WdAusarbeitungenScraper
       url = Addressable::URI.parse(department_url).join(path).normalize.to_s
 
       reports << {
+        doctype: doctype,
         reference: reference,
         title: title,
         url: url,

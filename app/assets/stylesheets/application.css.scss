@@ -3,7 +3,16 @@
  */
 
 @import "bootstrap-sprockets";
+$brand-btncolor:   #fea600;
+$btn-brand-color:  #fff;
+$btn-brand-bg:     $brand-btncolor;
+$btn-brand-border: darken($btn-brand-bg, 5%) !default;
+
 @import "bootstrap";
+
+.btn-brand {
+  @include button-variant($btn-brand-color, $btn-brand-bg, $btn-brand-border);
+}
 
 .navbar {
   margin-top: 10px;

@@ -1,5 +1,5 @@
 <p>
-  Der Bundestag hat versprochen, tausende Gutachten seines Wissenschaftlichen Dienstes zu veröffentlichen. Etwa 900 Gutachten sind bereits auf der <a href="http://bundestag.de/ausarbeitungen/">Bundestags-Website</a> online.
+  Der Bundestag hat versprochen, tausende Gutachten seines Wissenschaftlichen Dienstes zu veröffentlichen. Etwa <%= number_with_delimiter @count %> Gutachten sind bereits auf der <a href="http://bundestag.de/ausarbeitungen/">Bundestags-Website</a> online.
 </p>
 <p>
   Allerdings sind die Daten noch nicht aufbereitet. Um sie für die Öffentlichkeit nutzbar zu machen, müssen sie strukturiert und einfach durchsuchbar sein.
@@ -8,7 +8,7 @@
   Dafür gibt es diese Website! Mit einem Klick kannst du hier alle bisher vom Bundestag veröffentlichten Gutachten nach Titel und Inhalt durchsuchen und herunterladen. Versuch es zum Beispiel mit Gutachten zum Thema <%= link_to 'Terrorismus', search_path(q: 'Terrorismus') %>.
 </p>
 <p>
-  <a href="http://blog.fragdenstaat.de/2016/fragdenbundestags-erfolg/">Erfahre hier, warum der Bundestag seine Gutachten herausgibt</a>
+  <a href="http://blog.fragdenstaat.de/2016/fragdenbundestags-erfolg/">Erfahre hier, warum der Bundestag seine Gutachten herausgibt.</a>
 </p>
 
 <div class="search-block">
@@ -17,7 +17,7 @@
     <div class="input-group">
       <input type="text" id="searchq" name="q" class="form-control" />
       <span class="input-group-btn">
-        <button class="btn btn-default" type="submit">Suchen</button>
+        <button class="btn btn-brand" type="submit">Suchen</button>
       </span>
     </div>
   </form>

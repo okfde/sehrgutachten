@@ -1,7 +1,8 @@
 <% title "Suche nach #{@query}" + (!@papers.first_page? ? " (Seite #{@papers.current_page})" : '') %>
 
+<% content_for :main_fullwidth_prepend do %>
 <%= form_tag "/search", method: :get, role: 'search', class: 'search', enforce_utf8: false do %>
-  <div class="jumbotron jumbotron--search">
+  <div class="search-block search-block--fullwidth">
     <div class="container">
       <div class="input-group">
         <%= text_field_tag 'q', @query,
@@ -14,6 +15,7 @@
       </div>
     </div>
   </div>
+<% end %>
 <% end %>
 
 <% if @papers.size > 0 %>

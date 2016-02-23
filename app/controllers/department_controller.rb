@@ -3,8 +3,9 @@ class DepartmentController < ApplicationController
 
   def show
     @papers = @department.papers
-              .order(created_at: :desc)
+              .order(created_at: :desc, reference: :desc)
               .page params[:page]
+    fresh_when last_modified: @papers.maximum(:updated_at), public: true
   end
 
   private

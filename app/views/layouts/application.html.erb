@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html class="no-js">
 <head>
   <meta charset="UTF-8" />
   <%= title site: 'sehrgutachten', separator: '—', reverse: true %>
@@ -62,6 +62,7 @@
     </div>
   </div>
 </footer>
+<%= javascript_include_tag 'enhance', 'data-turbolinks-track' => true, 'data-turbolinks-eval' => false %>
 <%= render partial: 'site/tracking' -%>
 </body>
 </html>

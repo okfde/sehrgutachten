@@ -3,6 +3,26 @@
  */
 
 @import "bootstrap-sprockets";
+
+// From: https://github.com/thoughtbot/bourbon/blob/9fc15d596c770b6a29648255d4b40dfd7476dd77/app/assets/stylesheets/css3/_font-face.scss
+// Order of the includes matters, and it is: normal, bold, italic, bold+italic.
+@mixin font-face($font-family, $file-path, $weight: normal, $style: normal) {
+  @font-face {
+    font-family: $font-family;
+    font-weight: $weight;
+    font-style: $style;
+    src: font-url('#{$file-path}.eot');
+    src: local($font-family),
+         font-url('#{$file-path}.eot?#iefix') format('embedded-opentype'),
+         font-url('#{$file-path}.woff2')      format('woff2'),
+         font-url('#{$file-path}.woff')       format('woff'),
+         font-url('#{$file-path}.ttf')        format('truetype');
+  }
+}
+
+@include font-face("Poly", 'poly-regular-webfont');
+@include font-face("Poly", 'poly-italic-webfont', normal, italic);
+
 $brand-btncolor:   #fea600;
 $btn-brand-color:  #fff;
 $btn-brand-bg:     $brand-btncolor;
@@ -14,13 +34,24 @@ $btn-brand-border: darken($btn-brand-bg, 5%) !default;
   @include button-variant($btn-brand-color, $btn-brand-bg, $btn-brand-border);
 }
 
+h1,
+h2,
+h3 {
+  font-family: serif;
+}
+
+.fonts-loaded h1,
+.fonts-loaded h2,
+.fonts-loaded h3 {
+  font-family: 'Poly', serif;
+}
+
 .navbar {
   margin-top: 10px;
   margin-bottom: 15px;
 }
 
 .navbar-brand {
-  font-family: 'Poly', sans-serif;
   font-weight: 500;
   font-size: 20px;
   text-indent: -3000em;
@@ -83,11 +114,15 @@ $btn-brand-border: darken($btn-brand-bg, 5%) !default;
     color: #4D5A50;
     /* text-shadow: 0px 1px 0px rgba(0, 0, 0, 0.5); */
     margin: 0;
+    font-family: serif;
     font-weight: normal;
-    font-family: Poly;
     /* font-style: italic; */
     font-size: 2.2rem
   }
+}
+
+.fonts-loaded .search-block .tagline {
+  font-family: 'Poly', serif;
 }
 
 .dep-short {

@@ -19,7 +19,19 @@ class PaperController < ApplicationController
   end
 
   def find_paper
-    @paper = @department.papers.friendly.find params[:paper]
+    begin
+      @paper = @department.papers.friendly.find params[:paper]
+    rescue ActiveRecord::RecordNotFound => e
+      if params[:paper] =~ /^(\d+\-\d+)\-/
+        return find_paper_by_reference Regexp.last_match[1].gsub('-', '/')
+      end
+      raise e
+    end
+  end
+
+  def find_paper_by_reference(reference)
+    @paper = @department.papers.where(reference: reference).first
+    fail ActiveRecord::RecordNotFound if @paper.nil?
   end
 
   def redirect_old_slugs

@@ -19,3 +19,6 @@
 # data folder for local storage
 /data/*
 !/data/.keep
+
+# deployment
+/config/deploy.rb

@@ -18,8 +18,20 @@ Jobs laufen mittels ActiveJob.
 
 Je nach Setup musst du bei den folgenden Kommandos `bundle exec` davorpacken, sodass die richtigen gems genutzt werden.
 
+* Neue Abteilungen importieren
+
+  ```
+  rake 'departments:import_new'
+  ```
+
 * Neue Papers importieren
 
   ```
   rake 'papers:import_new[wd1]'
+  ```
+
+* Neue Papers herunterladen
+
+  ```
+  rake 'papers:download_new[wd1]'
   ```

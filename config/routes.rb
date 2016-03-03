@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   get 'search/autocomplete'
   get 'opensearch.xml' => 'search#opensearch', as: :opensearch, defaults: { format: 'xml' }
 
+  get 'faq' => 'site#faq', as: :faq
   get 'impressum' => 'site#imprint', as: :imprint
 
   get 'recent' => 'site#recent', as: :recent, format: :atom

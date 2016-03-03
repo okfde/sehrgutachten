@@ -7,6 +7,9 @@ class SiteController < ApplicationController
   def imprint
   end
 
+  def faq
+  end
+
   def recent
     @papers = Paper
               .order(created_at: :desc, reference: :desc)

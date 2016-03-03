@@ -3,7 +3,7 @@ require 'addressable'
 require 'date'
 
 class WdAusarbeitungenScraper
-  BASE_URL = 'http://www.bundestag.de/ausarbeitungen'
+  BASE_URL = 'https://www.bundestag.de/ausarbeitungen'
 
   def self.scrape_departments
     m = Mechanize.new
@@ -53,7 +53,9 @@ class WdAusarbeitungenScraper
 
       link = item.at_css('a')
       path = link.attributes['href'].value
-      url = Addressable::URI.parse(department_url).join(path).normalize.to_s
+      addr = Addressable::URI.parse(department_url).join(path).normalize
+      addr.scheme = 'https'
+      url = addr.to_s
 
       reports << {
         doctype: doctype,

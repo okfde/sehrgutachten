@@ -1,6 +1,6 @@
 class SiteController < ApplicationController
   def root
-    @departments = Department.all
+    @departments = Department.all.order(id: :asc)
     @count = Paper.count.round(-1)
   end
 

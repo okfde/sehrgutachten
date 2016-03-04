@@ -10,8 +10,12 @@ class ExtractTextFromPaperJob < ApplicationJob
     methods = [options[:method]] unless options[:method] == :all
 
     methods.each do |method|
-      text = extract(method, paper)
-      break unless text.blank?
+      begin
+        text = extract(method, paper)
+        break unless text.blank?
+      rescue => e
+        logger.warn e
+      end
     end
 
     fail "Can't extract text from Paper [#{paper.department.short_name} #{paper.reference}]" if text.blank?

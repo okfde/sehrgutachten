@@ -328,17 +328,18 @@ h3 {
     display: block;
 
     @media (min-width: 768px) {
-      min-height: 24em;
+      min-height: 19em;
     }
 
     @media (min-width: 992px) {
-      min-height: 20em;
+      min-height: 15em;
     }
   }
 
   img {
     display: block;
     margin: 0 auto 1rem;
+    width: 65px;
   }
 
   span {

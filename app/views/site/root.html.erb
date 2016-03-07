@@ -29,8 +29,19 @@
   <% end %>
 </p>
 <h3>Wissenschaftliche Dienste des Bundestags:</h3>
-<ul>
-  <% @departments.each do |department| %>
-  <li><%= link_to department do %><strong class="dep-short"><%= department.short_name %></strong>: <%= department.subject %><% end %></li>
-  <% end %>
-</ul>
+
+<div class="container-fluid">
+  <ul class="row department-list">
+    <%
+      @departments.each do |department|
+        icon = department.short_name.downcase
+    %>
+    <li class="col-sm-3">
+      <%= link_to department do %>
+        <img src="<%= asset_path("icons/#{icon}.svg") %>" alt="<%= department.short_name %>"/>
+        <span><%= department.subject %></span>
+      <% end %>
+    </li>
+    <% end %>
+  </ul>
+</div>

@@ -15,6 +15,8 @@ Rails.application.routes.draw do
   get 'faq' => 'site#faq', as: :faq
   get 'impressum' => 'site#imprint', as: :imprint
 
+  get 'static/sehrgutachten.svg', to: redirect { ActionController::Base.helpers.asset_path('sehrgutachten-logo.svg') }
+
   get 'status' => 'site#status'
 
   get 'recent' => 'site#recent', as: :recent, format: :atom

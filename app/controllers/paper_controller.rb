@@ -22,7 +22,7 @@ class PaperController < ApplicationController
     begin
       @paper = @department.papers.friendly.find params[:paper]
     rescue ActiveRecord::RecordNotFound => e
-      if params[:paper] =~ /^(\d+\-\d+)\-/
+      if params[:paper] =~ /\A(\d+\-\d+)/
         return find_paper_by_reference Regexp.last_match[1].gsub('-', '/')
       end
       raise e

@@ -19,6 +19,6 @@ class SiteController < ApplicationController
 
   def status
     expires_now
-    render text: "OK - #{Time.now}"
+    render plain: "OK - #{Time.now}"
   end
 end

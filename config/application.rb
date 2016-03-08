@@ -15,6 +15,9 @@ module Sehrgutachten
     config.i18n.available_locales = :de
     config.i18n.default_locale = :de
 
+    config.active_job.queue_adapter = :sidekiq
+    config.active_job.queue_name_prefix = "sehrgutachten_#{Rails.env}"
+
     # applicaton config:
     # path for storing paper pdfs
     config.x.paper_storage = Rails.root.join('data')

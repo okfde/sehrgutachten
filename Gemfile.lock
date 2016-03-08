@@ -6,6 +6,16 @@ GIT
       actionpack (>= 3.0.0)
       activesupport (>= 3.0.0)
 
+GIT
+  remote: git://github.com/sinatra/sinatra.git
+  revision: 4c7d38eb1b2cc02ce51029f28e0c3c34ca12ccfd
+  ref: 4c7d38eb
+  specs:
+    sinatra (2.0.0.pre.alpha)
+      rack (= 2.0.0.alpha)
+      rack-protection (~> 1.5)
+      tilt (~> 2.0)
+
 PATH
   remote: vendor/gems/memory_test_fix-1.2.1
   specs:
@@ -73,6 +83,7 @@ GEM
       execjs
     coffee-script-source (1.10.0)
     concurrent-ruby (1.0.0)
+    connection_pool (2.2.0)
     debug_inspector (0.0.2)
     docsplit (0.7.6)
     domain_name (0.5.20160128)
@@ -136,6 +147,8 @@ GEM
     puma (2.16.0)
     rack (2.0.0.alpha)
       json
+    rack-protection (1.5.3)
+      rack
     rack-test (0.6.3)
       rack (>= 1.0)
     rails (5.0.0.beta2)
@@ -180,6 +193,10 @@ GEM
       activemodel
       elasticsearch (>= 1)
       hashie
+    sidekiq (4.1.1)
+      concurrent-ruby (~> 1.0)
+      connection_pool (~> 2.2, >= 2.2.0)
+      redis (~> 3.2, >= 3.2.1)
     spring (1.6.3)
     sprockets (3.5.2)
       concurrent-ruby (~> 1.0)
@@ -237,6 +254,8 @@ DEPENDENCIES
   redis (~> 3.0)
   sass-rails (~> 5.0)
   searchkick (~> 1.2.1)
+  sidekiq (~> 4.1.1)
+  sinatra!
   spring
   sqlite3
   tophat (~> 2.2.1)

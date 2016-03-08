@@ -80,3 +80,7 @@ gem 'searchkick', '~> 1.2.1'
 
 # simple title and opengraph/twitter cards view helpers
 gem 'tophat', '~>2.2.1'
+
+# jobs
+gem 'sidekiq', '~>4.1.1'
+gem 'sinatra', github: 'sinatra/sinatra', ref: '4c7d38eb', require: nil # needs sinatra 2.0, because rack 2

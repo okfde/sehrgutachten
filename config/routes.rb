@@ -1,5 +1,12 @@
+require 'sidekiq/web'
+
 Rails.application.routes.draw do
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+
+  sidekiq_web_constraint = ->(_, request) { ['::1', '127.0.0.1'].include?(request.remote_ip) || ENV['SIDEKIQ_WEB_OPEN'].present? }
+  constraints sidekiq_web_constraint do
+    mount Sidekiq::Web => '/sidekiq'
+  end
 
   get 'search' => 'search#search', as: :search
   get 'search/autocomplete'

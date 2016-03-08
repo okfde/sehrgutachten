@@ -1,6 +1,7 @@
 <% title "#{@paper.title} (#{@paper.reference}) &mdash; #{@department.short_name}" %>
 <%- content_for :head do %>
-<%= tag 'link', href: paper_path(@department, @paper, {format: :json}), rel: 'alternate', type: 'application/json' -%>
+<%= tag 'link', href: paper_path(@department, @paper, format: :txt), rel: 'alternate', type: 'text/plain' %>
+<%= tag 'link', href: paper_path(@department, @paper, format: :json), rel: 'alternate', type: 'application/json' -%>
 <%- end -%>
 
 <div class="page-header">
@@ -18,12 +19,24 @@
     </p>
   </div>
   <div class="col-xs-5 col-md-3 text-right">
-    <%= link_to 'Download PDF', @paper.url, class: 'btn btn-primary' %>
+    <%= link_to 'Download PDF', @paper.url, class: 'btn btn-primary' %><br/>
+    <small><%= link_to "als Text", paper_path(@department, @paper, format: :txt), target: '_blank' %></small>
   </div>
 </div>
 
 <iframe src="<%= @paper.url %>" width="100%" height="650px" class="paper-iframe"></iframe>
 
-<p class="pull-right"><small><%= link_to 'Quelle: Bundestag', @department.source_url, target: '_blank' %></small></p>
+<div class="row">
+  <div class="col-xs-6">
+    <p class="text-left"><small>
+      Weitere Formate:
+      <%= link_to ".txt", paper_path(@department, @paper, format: :txt), target: '_blank' %>,
+      <%= link_to ".json", paper_path(@department, @paper, format: :json), target: '_blank' %>
+    </small></p>
+  </div>
+  <div class="col-xs-6">
+    <p class="text-right"><small><%= link_to 'Quelle: Bundestag', @department.source_url, target: '_blank' %></small></p>
+  </div>
+</div>
 
 <!-- Paper/<%= @paper.id %> -->

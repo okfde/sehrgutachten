@@ -8,6 +8,8 @@ Rails.application.routes.draw do
   get 'faq' => 'site#faq', as: :faq
   get 'impressum' => 'site#imprint', as: :imprint
 
+  get 'status' => 'site#status'
+
   get 'recent' => 'site#recent', as: :recent, format: :atom
 
   get 'bt/:department/:paper' => 'paper#show', as: :paper

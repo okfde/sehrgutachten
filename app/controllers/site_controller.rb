@@ -16,4 +16,9 @@ class SiteController < ApplicationController
               .page params[:page]
     fresh_when last_modified: @papers.maximum(:updated_at), public: true
   end
+
+  def status
+    expires_now
+    render text: "OK - #{Time.now}"
+  end
 end

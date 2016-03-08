@@ -22,7 +22,7 @@ module Sehrgutachten
     # path for storing paper pdfs
     config.x.paper_storage = Rails.root.join('data')
     # User-Agent for scraping and download
-    config.x.user_agent = 'sehrgutachten-scraper (info@fragdenbundestag.de)'
+    config.x.user_agent = 'sehrgutachten-scraper (info@sehrgutachten.de)'
     # Tika Server URL for extracting text from papers
     config.x.tika_server = ENV['TIKA_SERVER_URL'] || false
   end

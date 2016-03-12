@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <%= title site: 'sehrgutachten', separator: '—', reverse: true %>
+  <%= tag 'link', href: asset_path('favicon.png'), rel: 'icon', type: 'image/png+xml' %>
   <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= tag 'link', href: opensearch_path, rel: 'search', type: 'application/opensearchdescription+xml', title: 'sehrgutachten Suche' %>
   <%= yield :head %>

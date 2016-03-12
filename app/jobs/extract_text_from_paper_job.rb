@@ -1,5 +1,4 @@
 class ExtractTextFromPaperJob < ApplicationJob
-  queue_as :meta
 
   def perform(paper, options = {})
     options.reverse_merge!(method: :all)

@@ -18,6 +18,23 @@ web:
     REDIS_URL: redis://redis:6379
     SIDEKIQ_WEB_OPEN: "true"
 
+worker:
+  build: .
+  command: bundle exec sidekiq -q default -c 5
+  volumes:
+    - .:/app
+  links:
+    - database
+    - elasticsearch
+    - tika
+    - redis
+  environment:
+    RACK_ENV: development
+    DATABASE_URL: postgres://sehrgutachten:@database/sehrgutachten
+    ELASTICSEARCH_URL: http://elasticsearch:9200/
+    TIKA_SERVER_URL: http://tika:9998
+    REDIS_URL: redis://redis:6379
+
 database:
   image: postgres:9.4
   environment:

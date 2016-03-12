@@ -7,6 +7,6 @@ namespace :departments do
   desc 'Import new departments'
   task import_new: :environment do
     Rails.logger.info "Adding job for importing new departments"
-    ImportNewDepartmentsJob.perform_now
+    ImportNewDepartmentsJob.perform_later
   end
 end

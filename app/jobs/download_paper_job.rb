@@ -17,24 +17,15 @@ class DownloadPaperJob < ApplicationJob
     ExtractLastModifiedFromPaperJob.perform_later(paper) if paper.last_modified.blank?
   end
 
-  def patron_session
-    sess = Patron::Session.new
-    sess.connect_timeout = 5
-    sess.timeout = 60
-    sess.headers['User-Agent'] = Rails.configuration.x.user_agent
-    sess
-  end
-
   def download_paper(paper)
-    session = patron_session
     filepath = paper.local_path
     folder = filepath.dirname
     FileUtils.mkdir_p folder
 
-    resp = session.get(paper.url)
+    resp = Typhoeus.get(paper.url)
 
-    if resp.status != 200
-      logger.warn "Download failed with status #{resp.status} for Paper [#{paper.department.short_name} #{paper.reference}]"
+    if resp.code != 200
+      logger.warn "Download failed with status #{resp.code} for Paper [#{paper.department.short_name} #{paper.reference}]"
       return false
     end
 

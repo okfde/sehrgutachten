@@ -69,7 +69,6 @@ gem 'bootstrap-sass', '~> 3.3.6'
 gem 'kaminari', github: 'amatsuda/kaminari'
 
 # httpclient
-gem 'patron', '~> 0.5.0'
 gem 'excon', '~> 0.48'
 
 # pdf page count

@@ -142,7 +142,6 @@ GEM
     nokogiri (1.6.7.2)
       mini_portile2 (~> 2.0.0.rc2)
     ntlm-http (0.1.1)
-    patron (0.5.0)
     pg (0.18.4)
     puma (3.1.0)
     rack (2.0.0.alpha)
@@ -248,7 +247,6 @@ DEPENDENCIES
   kaminari!
   mechanize (~> 2.7.4)
   memory_test_fix!
-  patron (~> 0.5.0)
   pg (~> 0.18)
   puma
   rails (>= 5.0.0.beta3, < 5.1)

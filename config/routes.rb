@@ -21,6 +21,7 @@ Rails.application.routes.draw do
 
   get 'recent' => 'site#recent', as: :recent, format: :atom
 
+  put 'bt/:department/:paper' => 'paper#update', format: :txt
   get 'bt/:department/:paper' => 'paper#show', as: :paper
   get 'bt/:department' => 'department#show', as: :department #, department: /[a-z]+[\d]+/, format: false
 

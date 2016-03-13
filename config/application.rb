@@ -25,5 +25,7 @@ module Sehrgutachten
     config.x.user_agent = 'sehrgutachten-scraper (info@sehrgutachten.de)'
     # Tika Server URL for extracting text from papers
     config.x.tika_server = ENV['TIKA_SERVER_URL'] || false
+    # Push OCR token to update paper contents from remote
+    config.x.push_ocr_token = ENV['PUSH_OCR_TOKEN']
   end
 end

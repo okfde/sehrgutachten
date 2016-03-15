@@ -123,7 +123,7 @@ h3 {
 .search-block {
   background: linear-gradient(135deg, #dadfdb 0%,#d1d6d2 100%);
   margin: 25px 0;
-  padding: 30px;
+  padding: 15px;
   border-radius: 8px;
 
   .tagline {
@@ -140,6 +140,37 @@ h3 {
     margin-top: 0;
     border-radius: 0;
   }
+
+  .container {
+    padding: 0;
+  }
+
+  @media (min-width: $screen-sm-min) {
+    padding: 30px 15px;
+  }
+
+  @media (min-width: $screen-md-min) {
+    padding: 30px;
+  }
+
+  @media (min-width: $screen-sm-min) {
+    .container {
+      padding: 0 15px;
+    }
+  }
+}
+
+.search-block--with-feed .input-group {
+  float: left;
+  width: -moz-calc(100% - 30px);
+  width: -webkit-calc(100% - 30px);
+  width: calc(100% - 30px);
+}
+
+.search-block--with-feed .feed {
+  display: inline-block;
+  margin-top: 4px;
+  margin-left: 5px;
 }
 
 .fonts-loaded .search-block .tagline {

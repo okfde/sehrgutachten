@@ -3,7 +3,7 @@
 
 <% content_for :main_fullwidth_prepend do %>
 <%= form_tag "/search", method: :get, role: 'search', class: 'search', enforce_utf8: false do %>
-  <div class="search-block search-block--fullwidth">
+  <div class="search-block search-block--fullwidth search-block--with-feed">
     <div class="container">
       <div class="input-group">
         <%= text_field_tag 'q', @query,
@@ -14,6 +14,9 @@
           <%= button_tag 'Suchen', type: :submit, name: nil, class: 'btn btn-brand' %>
         </span>
       </div>
+      <%= link_to search_url(q: @query, format: :atom), class: 'feed', title: "Neue Suchergebnisse als Atom-Feed abonnieren" do %>
+        <span class="sr-only">Neue Suchergebnisse als Atom-Feed abonnieren:</span><%= image_tag('feed-icon.svg', class: 'feed-icon', alt: 'Atom-Feed') %>
+      <% end %>
     </div>
   </div>
 <% end %>

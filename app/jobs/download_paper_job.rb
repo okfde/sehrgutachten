@@ -22,7 +22,7 @@ class DownloadPaperJob < ApplicationJob
     folder = filepath.dirname
     FileUtils.mkdir_p folder
 
-    resp = Typhoeus.get(paper.url)
+    resp = Typhoeus.get(paper.url, followlocation: true)
 
     if resp.code != 200
       logger.warn "Download failed with status #{resp.code} for Paper [#{paper.department.short_name} #{paper.reference}]"

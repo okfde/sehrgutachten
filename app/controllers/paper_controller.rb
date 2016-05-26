@@ -1,7 +1,7 @@
 class PaperController < ApplicationController
-  before_action :find_department
-  before_action :find_paper
-  before_action :redirect_old_slugs
+  before_action :find_department, only: [:show, :update]
+  before_action :find_paper, only: [:show, :update]
+  before_action :redirect_old_slugs, only: [:show, :update]
   before_action :check_active_push_ocr_token, only: [:update]
 
   def show
@@ -22,6 +22,11 @@ class PaperController < ApplicationController
     @paper.contents = request.body.read.force_encoding('utf-8').strip
     @paper.save
     redirect_to paper_path(@department, @paper, format: :txt)
+  end
+
+  def redirect_by_id
+    @paper = Paper.find(params[:paper].to_i)
+    redirect_to paper_path(@paper.department, @paper, format: mime_extension(request.format))
   end
 
   private

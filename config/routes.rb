@@ -21,6 +21,9 @@ Rails.application.routes.draw do
 
   get 'recent' => 'site#recent', as: :recent, format: :atom
 
+  # really short paper url used for debugging
+  get 'p:paper' => 'paper#redirect_by_id', constraints: { paper: /[0-9]+/ }
+
   put 'bt/:department/:paper' => 'paper#update', format: :txt
   get 'bt/:department/:paper' => 'paper#show', as: :paper
   get 'bt/:department' => 'department#show', as: :department #, department: /[a-z]+[\d]+/, format: false

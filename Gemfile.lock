@@ -9,13 +9,6 @@ GIT
       rack-protection (~> 1.5)
       tilt (~> 2.0)
 
-PATH
-  remote: vendor/gems/memory_test_fix-1.2.1
-  specs:
-    memory_test_fix (1.2.1)
-      activerecord (>= 3.0.0)
-      railties (>= 3.0.0)
-
 GEM
   remote: https://rubygems.org/
   specs:
@@ -125,6 +118,9 @@ GEM
       nokogiri (~> 1.6)
       ntlm-http (~> 0.1, >= 0.1.1)
       webrobots (>= 0.0.9, < 0.2)
+    memory_test_fix (1.4.0)
+      activerecord (~> 5.0.0)
+      railties (~> 5.0.0)
     method_source (0.8.2)
     mime-types (2.99.2)
     mini_portile2 (2.1.0)
@@ -243,7 +239,7 @@ DEPENDENCIES
   jquery-rails
   kaminari (~> 0.17.0)
   mechanize (~> 2.7.4)
-  memory_test_fix!
+  memory_test_fix (~> 1.4.0)
   pg (~> 0.18)
   puma
   rails (= 5.0.0)

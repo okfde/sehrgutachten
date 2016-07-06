@@ -36,7 +36,7 @@ end
 
 group :test do
   gem 'sqlite3'
-  gem 'memory_test_fix', path: 'vendor/gems/memory_test_fix-1.2.1'
+  gem 'memory_test_fix', '~> 1.4.0'
 end
 
 group :development do

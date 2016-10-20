@@ -26,7 +26,7 @@ class ImportNewPapersJob < ApplicationJob
         new_papers += 1
       end
 
-      # DownloadPaperJob.perform_later(paper, force: new_paper) unless paper.url.blank?
+      DownloadPaperJob.perform_later(paper, force: new_paper) unless paper.url.blank?
     end
 
     logger.info "Importing done. #{new_papers} new Papers, #{old_papers} old Papers."

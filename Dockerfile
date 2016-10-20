@@ -9,7 +9,6 @@ RUN mkdir /app
 WORKDIR /app
 ADD Gemfile /app/Gemfile
 ADD Gemfile.lock /app/Gemfile.lock
-ADD vendor/gems /app/vendor/gems
 RUN bundle install
 
 ADD . /app

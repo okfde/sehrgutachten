@@ -1,7 +1,9 @@
 class ImportNewPapersJob < ApplicationJob
 
   def perform
-    papers = WdAusarbeitungenScraper.scrape_all
+    scraper = WdAusarbeitungenScraper.new_paper
+    scraper.logger = logger
+    papers = scraper.scrape_all
 
     old_papers = 0
     new_papers = 0

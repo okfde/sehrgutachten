@@ -4,7 +4,15 @@ require 'date'
 
 class WdAusarbeitungenScraper
   BASE_URL = 'https://www.bundestag.de/ajax/filterlist/de/-/474644'
-  PER_PAGE = 500
+  PER_PAGE = 20
+
+  def logger=(logger)
+    @logger = logger
+  end
+
+  def logger
+    @logger ||= Rails.logger
+  end
 
   def self.hash_url(params)
     params_for_hash = params.gsub(/[^a-zA-Z0-9]*/, '')
@@ -18,7 +26,7 @@ class WdAusarbeitungenScraper
     "#{BASE_URL}#{hash_url(params)}"
   end
 
-  def self.scrape_all
+  def scrape_all
     m = Mechanize.new
     mp = m.get BASE_URL
     page = 0
@@ -29,38 +37,46 @@ class WdAusarbeitungenScraper
       content = scrape_current_page(mp, page)
       break if content.nil?
       reports.concat content
-      mp = m.get paged_url(page)
+      mp = m.get self.class.paged_url(page)
     end
 
     reports
   end
 
-  def self.scrape_page(page = 0)
+  def scrape_page(page = 0)
     m = Mechanize.new
-    mp = m.get paged_url(page)
+    mp = m.get self.class.paged_url(page)
     scrape_current_page(mp, page)
   end
 
-  def self.scrape_current_page(mp, page)
+  def scrape_current_page(mp, page)
     reports = []
 
     if mp.search('//h3').size > 0 || mp.search('//table').size == 0
+      logger.warn "No table found: page: #{page}"
       return nil
     end
 
     mp.search('//table/tbody/tr').each do |item|
-      date_text = item.at_css('[data-th="Datum"] p').text.strip
-      date = Date.parse(clean_date(date_text))
+      date_text = item.at_css('[data-th="Datum"] p').try(:text).try(:strip)
+      if date_text.blank?
+        logger.warn "Empty date_text:\"#{date_text}\" page:#{page}"
+        next
+      end
+      date = Date.parse(self.class.clean_date(date_text))
 
-      doctype = item.at_css('[data-th="Dokumenttyp"] p').text.strip
-      next if doctype.starts_with?('Aktueller Begriff') || doctype == 'Infobrief'
+      doctype = item.at_css('[data-th="Dokumenttyp"] p').try(:text).try(:strip) || ""
+      if doctype.blank? || doctype.starts_with?('Aktueller Begriff') || doctype == 'Infobrief'
+        logger.warn "Skipping date_text:\"#{date_text}\" doctype:\"#{doctype}\" page:#{page}"
+        next
+      end
 
       title_el = item.at_css('[data-th="Dokument"] p strong')
       title_el.css('br').each { |br| br.replace ' ' }
       title = title_el.text.strip
       t = title.match(/([WP][DEF]\p{Z}*\d*).+?\p{Pd}?\p{Z}*([\d\/]+)\p{Z}*(.+)/i)
       if t.nil?
-        STDERR.puts "Can't extract title:\"#{title}\" doctype:\"#{doctype}\" page:#{page}"
+        logger.warn "Can't extract title:\"#{title}\" doctype:\"#{doctype}\" page:#{page}"
         next
       end
 
@@ -83,6 +99,8 @@ class WdAusarbeitungenScraper
         created_at: date
       }
     end
+
+    logger.debug "Page:#{page} items:#{mp.search('//table/tbody/tr').size} found:#{reports.size}"
 
     reports
   end

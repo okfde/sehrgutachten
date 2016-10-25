@@ -50,7 +50,7 @@ end
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 # Get i18n files
-gem 'rails-i18n', '~> 5.0.0.beta4'
+gem 'rails-i18n', '~> 5.0.0'
 
 # scraping
 gem 'mechanize', '~> 2.7.4'
@@ -78,7 +78,7 @@ gem 'searchkick', '~> 1.2.1'
 gem 'typhoeus', '~> 1.0.1'
 
 # simple title and opengraph/twitter cards view helpers
-gem 'tophat', '~>2.2.1'
+gem 'tophat', '~> 2.2.1'
 
 # jobs
 gem 'sidekiq', '~>4.1.1'

@@ -161,9 +161,9 @@ GEM
       nokogiri (~> 1.6.0)
     rails-html-sanitizer (1.0.3)
       loofah (~> 2.0)
-    rails-i18n (5.0.0.beta4)
+    rails-i18n (5.0.0)
       i18n (~> 0.7)
-      railties (~> 5.0.0.beta1)
+      railties (~> 5.0)
     railties (5.0.0)
       actionpack (= 5.0.0)
       activesupport (= 5.0.0)
@@ -243,7 +243,7 @@ DEPENDENCIES
   pg (~> 0.18)
   puma
   rails (= 5.0.0)
-  rails-i18n (~> 5.0.0.beta4)
+  rails-i18n (~> 5.0.0)
   redis (~> 3.0)
   sass-rails (~> 5.0)
   searchkick (~> 1.2.1)
@@ -259,4 +259,4 @@ DEPENDENCIES
   web-console (~> 3.0)
 
 BUNDLED WITH
-   1.11.2
+   1.12.5

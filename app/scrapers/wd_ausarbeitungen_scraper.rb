@@ -58,7 +58,7 @@ class WdAusarbeitungenScraper
     end
 
     mp.search('//table/tbody/tr').each do |item|
-      date_text = item.at_css('[data-th="Datum"] p').try(:text).try(:strip)
+      date_text = item.at_css('[data-th="Veröffentlichung"] p').try(:text).try(:strip)
       if date_text.blank?
         logger.warn "Empty date_text:\"#{date_text}\" page:#{page}"
         next

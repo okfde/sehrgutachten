@@ -3,7 +3,7 @@ require 'addressable'
 require 'date'
 
 class WdAusarbeitungenScraper
-  BASE_URL = 'https://www.bundestag.de/ajax/filterlist/de/-/474644'
+  BASE_URL = 'https://www.bundestag.de/ajax/filterlist/de/dokumente/ausarbeitungen/474644-474644'
   PER_PAGE = 20
 
   def logger=(logger)

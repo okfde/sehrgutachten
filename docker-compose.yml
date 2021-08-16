@@ -1,59 +1,54 @@
-web:
-  build: .
-  command: bundle exec rails server -b 0.0.0.0
-  ports:
-    - "3000:3000"
-  volumes:
-    - .:/app
-  links:
-    - database
-    - elasticsearch
-    - tika
-    - redis
-  environment:
-    RACK_ENV: development
-    DATABASE_URL: postgres://sehrgutachten:@database/sehrgutachten
-    ELASTICSEARCH_URL: http://elasticsearch:9200/
-    TIKA_SERVER_URL: http://tika:9998
-    REDIS_URL: redis://redis:6379
-    SIDEKIQ_WEB_OPEN: "true"
+version: "3.9"
+services:
+  web:
+    build: .
+    command: bundle exec rails server -b 0.0.0.0
+    ports:
+      - "3000:3000"
+    volumes:
+      - app:/app
+    environment:
+      RACK_ENV: development
+      DATABASE_URL: postgres://sehrgutachten:@database/sehrgutachten
+      ELASTICSEARCH_URL: http://elasticsearch:9200/
+      TIKA_SERVER_URL: http://tika:9998
+      REDIS_URL: redis://redis:6379
+      SIDEKIQ_WEB_OPEN: "true"
 
-worker:
-  build: .
-  command: bundle exec sidekiq -q default -c 5
-  volumes:
-    - .:/app
-  links:
-    - database
-    - elasticsearch
-    - tika
-    - redis
-  environment:
-    RACK_ENV: development
-    DATABASE_URL: postgres://sehrgutachten:@database/sehrgutachten
-    ELASTICSEARCH_URL: http://elasticsearch:9200/
-    TIKA_SERVER_URL: http://tika:9998
-    REDIS_URL: redis://redis:6379
+  worker:
+    build: .
+    command: bundle exec sidekiq -q default -c 5
+    volumes:
+      - app:/app
+    environment:
+      RACK_ENV: development
+      DATABASE_URL: postgres://sehrgutachten:@database/sehrgutachten
+      ELASTICSEARCH_URL: http://elasticsearch:9200/
+      TIKA_SERVER_URL: http://tika:9998
+      REDIS_URL: redis://redis:6379
 
-database:
-  image: postgres:9.4
-  environment:
-    POSTGRES_USER: sehrgutachten
-  ports:
-    - 5432
+  database:
+    image: postgres:9.4
+    environment:
+      POSTGRES_USER: sehrgutachten
+    ports:
+      - 5432
 
-elasticsearch:
-  image: elasticsearch:2.2
-  command: elasticsearch -Des.http.cors.enabled=true
-  ports:
-    - 9200
+  elasticsearch:
+    image: elasticsearch:2.2
+    command: elasticsearch -Des.http.cors.enabled=true
+    ports:
+      - 9200
 
-tika:
-  image: logicalspark/docker-tikaserver
-  ports:
-    - 9998
+  tika:
+    image: logicalspark/docker-tikaserver
+    ports:
+      - 9998
 
-redis:
-  image: redis:3.0
-  ports:
-    - 6379
+  redis:
+    image: redis:3.0
+    ports:
+      - 6379
+
+volumes:
+  app:

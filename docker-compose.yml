@@ -9,7 +9,7 @@ services:
       - app:/app
     environment:
       RACK_ENV: development
-      DATABASE_URL: postgres://sehrgutachten:@database/sehrgutachten
+      DATABASE_URL: postgres://sehrgutachten:sehrgutachten@database/sehrgutachten
       ELASTICSEARCH_URL: http://elasticsearch:9200/
       TIKA_SERVER_URL: http://tika:9998
       REDIS_URL: redis://redis:6379
@@ -22,7 +22,7 @@ services:
       - app:/app
     environment:
       RACK_ENV: development
-      DATABASE_URL: postgres://sehrgutachten:@database/sehrgutachten
+      DATABASE_URL: postgres://sehrgutachten:sehrgutachten@database/sehrgutachten
       ELASTICSEARCH_URL: http://elasticsearch:9200/
       TIKA_SERVER_URL: http://tika:9998
       REDIS_URL: redis://redis:6379
@@ -31,6 +31,7 @@ services:
     image: postgres:9.4
     environment:
       POSTGRES_USER: sehrgutachten
+      POSTGRES_PASSWORD: sehrgutachten
     ports:
       - 5432
 

@@ -1,12 +1,18 @@
-version: "3.9"
+version: "3"
+
 services:
   web:
     build: .
     command: bundle exec rails server -b 0.0.0.0
     ports:
       - "3000:3000"
+    depends_on:
+      - database
+      - elasticsearch
+      - tika
+      - redis
     volumes:
-      - app:/app
+      - ./:/app
     environment:
       RACK_ENV: development
       DATABASE_URL: postgres://sehrgutachten:sehrgutachten@database/sehrgutachten
@@ -18,8 +24,13 @@ services:
   worker:
     build: .
     command: bundle exec sidekiq -q default -c 5
+    depends_on:
+      - database
+      - elasticsearch
+      - tika
+      - redis
     volumes:
-      - app:/app
+      - ./:/app
     environment:
       RACK_ENV: development
       DATABASE_URL: postgres://sehrgutachten:sehrgutachten@database/sehrgutachten
@@ -32,12 +43,17 @@ services:
     environment:
       POSTGRES_USER: sehrgutachten
       POSTGRES_PASSWORD: sehrgutachten
+    volumes:
+      - postgres_data:/var/lib/postgresql/data/
     ports:
       - 5432
 
   elasticsearch:
     image: elasticsearch:2.2
     command: elasticsearch -Des.http.cors.enabled=true
+    volumes:
+      - elasticsearch-data:/usr/share/elasticsearch/data
+      - elasticsearch-log:/var/log
     ports:
       - 9200
 
@@ -52,4 +68,6 @@ services:
       - 6379
 
 volumes:
-  app:
+  postgres_data: {}
+  elasticsearch-data: {}
+  elasticsearch-log: {}

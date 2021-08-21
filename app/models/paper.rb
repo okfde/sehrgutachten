@@ -9,7 +9,7 @@ class Paper < ApplicationRecord
              text_start: [:title],
              word_start: [:title],
              highlight: [:title, :contents],
-             only_analyzed: [:contents],
+             searchable: [:contents],
              index_prefix: 'sehrgutachten'
 
   scope :search_import, -> { includes(:department) }

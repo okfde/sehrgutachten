@@ -17,7 +17,7 @@ class SearchController < ApplicationController
         aggs: [:department],
         execute: false,
         misspellings: false,
-        include: [:department]
+        includes: [:department]
       }.merge(options)
 
     query = Paper.search(
@@ -29,11 +29,10 @@ class SearchController < ApplicationController
         function_score: {
           query: body[:query],
           functions: [
-            { boost_factor: 1 },
             {
               gauss: {
                 created_at: {
-                  scale: '6w'
+                  scale: '42d'
                 }
               }
             }

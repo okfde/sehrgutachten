@@ -49,8 +49,10 @@ services:
       - 5432
 
   elasticsearch:
-    image: elasticsearch:2.2
-    command: elasticsearch -Des.http.cors.enabled=true
+    image: elasticsearch:7.14.0
+    environment:
+      discovery.type: single-node
+      xpack.security.enabled: 'false'
     volumes:
       - elasticsearch-data:/usr/share/elasticsearch/data
       - elasticsearch-log:/var/log

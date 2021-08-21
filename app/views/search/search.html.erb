@@ -25,7 +25,7 @@
 <% if @papers.size > 0 %>
 
 <ol class="paper-list paper-list--with-department">
-  <% @papers.with_details.each do |paper, details| %>
+  <% @papers.with_highlights.each do |paper, details| %>
   <li>
     <%
       title = details[:highlight].try(:fetch, :title, nil).try(:html_safe) || paper.title

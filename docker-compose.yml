@@ -39,7 +39,7 @@ services:
       REDIS_URL: redis://redis:6379
 
   database:
-    image: postgres:9.4
+    image: postgres:13.4
     environment:
       POSTGRES_USER: sehrgutachten
       POSTGRES_PASSWORD: sehrgutachten

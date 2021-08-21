@@ -2,10 +2,38 @@
 
 Volltextsuche und Feeds für die Gutachten des [Wissenschaftlichen Dienstes des Bundestags](https://bundestag.de/ausarbeitungen/).
 
-
 ### Entwicklung
 
 sehrgutachten ist eine Rails 5 (beta)-Anwendung. Du kannst dir eine Rails-Umgebung installieren, oder mittels [docker-compose](https://docs.docker.com/compose/) eine bereits fertig eingerichtete Umgebung benutzen.
+
+#### docker-compose
+
+Nachdem die docker-compose Umgebung mittels `docker-compose up` gestartet wurde,
+muss beim ersten Start noch folgendes erledigt werden.
+
+Alle nachfolgenden Befehle müssen innerhalb des `web` oder `worker` container
+ausgeführt werden.
+
+1. Datenbank initialisieren
+
+Dieser Befehl legt die benötigten Datenbanken und, da wir uns in einer
+Entwicklungsumgebung befinden, auch einige Testeinträge an.
+
+```
+RAILS_ENV=development rails db:setup
+```
+
+2. Suchindex initialisieren
+
+Die Testeinträge werden hiermit in Elasticsearch bekannt gemacht.
+
+```
+RAILS_ENV=development rails searchkick:reindex:all
+```
+
+#### Logs
+
+Logs der Rails Anwendung innerhalb des `web` und `worker` container landen in `/app/log/development.log`.
 
 #### Abhängigkeiten
 

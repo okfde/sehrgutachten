@@ -74,8 +74,8 @@ gem 'excon', '~> 0.48'
 gem 'docsplit', '~> 0.7.6'
 
 # search
-gem 'searchkick', '~> 1.2.1'
-gem 'typhoeus', '~> 1.0.1'
+gem 'searchkick', '~> 4.5.2'
+gem 'typhoeus', '~> 1.4.0'
 
 # simple title and opengraph/twitter cards view helpers
 gem 'tophat', '~> 2.2.1'

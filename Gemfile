@@ -82,4 +82,4 @@ gem 'tophat', '~> 2.2.1'
 
 # jobs
 gem 'sidekiq', '~>4.1.1'
-gem 'sinatra', github: 'sinatra/sinatra', ref: 'e7ef8e23', require: nil # needs sinatra 2.0, because rack 2
+gem 'sinatra', git: 'https://github.com/sinatra/sinatra.git', ref: 'e7ef8e23', require: nil # needs sinatra 2.0, because rack 2

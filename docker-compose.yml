@@ -1,59 +1,75 @@
-web:
-  build: .
-  command: bundle exec rails server -b 0.0.0.0
-  ports:
-    - "3000:3000"
-  volumes:
-    - .:/app
-  links:
-    - database
-    - elasticsearch
-    - tika
-    - redis
-  environment:
-    RACK_ENV: development
-    DATABASE_URL: postgres://sehrgutachten:@database/sehrgutachten
-    ELASTICSEARCH_URL: http://elasticsearch:9200/
-    TIKA_SERVER_URL: http://tika:9998
-    REDIS_URL: redis://redis:6379
-    SIDEKIQ_WEB_OPEN: "true"
+version: "3"
 
-worker:
-  build: .
-  command: bundle exec sidekiq -q default -c 5
-  volumes:
-    - .:/app
-  links:
-    - database
-    - elasticsearch
-    - tika
-    - redis
-  environment:
-    RACK_ENV: development
-    DATABASE_URL: postgres://sehrgutachten:@database/sehrgutachten
-    ELASTICSEARCH_URL: http://elasticsearch:9200/
-    TIKA_SERVER_URL: http://tika:9998
-    REDIS_URL: redis://redis:6379
+services:
+  web:
+    build: .
+    command: bundle exec rails server -b 0.0.0.0
+    ports:
+      - "3000:3000"
+    depends_on:
+      - database
+      - elasticsearch
+      - tika
+      - redis
+    volumes:
+      - ./:/app
+    environment:
+      RACK_ENV: development
+      DATABASE_URL: postgres://sehrgutachten:sehrgutachten@database/sehrgutachten
+      ELASTICSEARCH_URL: http://elasticsearch:9200/
+      TIKA_SERVER_URL: http://tika:9998
+      REDIS_URL: redis://redis:6379
+      SIDEKIQ_WEB_OPEN: "true"
 
-database:
-  image: postgres:9.4
-  environment:
-    POSTGRES_USER: sehrgutachten
-  ports:
-    - 5432
+  worker:
+    build: .
+    command: bundle exec sidekiq -q default -c 5
+    depends_on:
+      - database
+      - elasticsearch
+      - tika
+      - redis
+    volumes:
+      - ./:/app
+    environment:
+      RACK_ENV: development
+      DATABASE_URL: postgres://sehrgutachten:sehrgutachten@database/sehrgutachten
+      ELASTICSEARCH_URL: http://elasticsearch:9200/
+      TIKA_SERVER_URL: http://tika:9998
+      REDIS_URL: redis://redis:6379
 
-elasticsearch:
-  image: elasticsearch:2.2
-  command: elasticsearch -Des.http.cors.enabled=true
-  ports:
-    - 9200
+  database:
+    image: postgres:13.4
+    environment:
+      POSTGRES_USER: sehrgutachten
+      POSTGRES_PASSWORD: sehrgutachten
+    volumes:
+      - postgres_data:/var/lib/postgresql/data/
+    ports:
+      - 5432
 
-tika:
-  image: logicalspark/docker-tikaserver
-  ports:
-    - 9998
+  elasticsearch:
+    image: elasticsearch:7.14.0
+    environment:
+      discovery.type: single-node
+      xpack.security.enabled: 'false'
+    volumes:
+      - elasticsearch-data:/usr/share/elasticsearch/data
+      - elasticsearch-log:/var/log
+    ports:
+      - 9200
 
-redis:
-  image: redis:3.0
-  ports:
-    - 6379
+  tika:
+    image: apache/tika:2.0.0
+    ports:
+      - 9998
+
+  redis:
+    image: redis:6.2
+    ports:
+      - 6379
+
+volumes:
+  postgres_data: {}
+  elasticsearch-data: {}
+  elasticsearch-log: {}
